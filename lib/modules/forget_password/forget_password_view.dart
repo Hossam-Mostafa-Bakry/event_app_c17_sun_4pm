@@ -1,4 +1,5 @@
 import 'package:event_app_c17_sun_4pm/core/gen/assets.gen.dart';
+import 'package:event_app_c17_sun_4pm/core/l10n/app_localizations.dart';
 import 'package:event_app_c17_sun_4pm/core/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class ForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -16,7 +18,7 @@ class ForgetPasswordView extends StatelessWidget {
         centerTitle: true,
         iconTheme: const IconThemeData(color: ColorPallete.primary),
         title: Text(
-          "Forget Password",
+          appLocalization.forgetPassword,
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
@@ -31,7 +33,10 @@ class ForgetPasswordView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Assets.images.forgetPasswordImg.image(),
-            CustomButtonWidget(onPressed: () {}, text: "Reset Password"),
+            CustomButtonWidget(
+              onPressed: () {},
+              text: appLocalization.resetPassword,
+            ),
           ],
         ),
       ),

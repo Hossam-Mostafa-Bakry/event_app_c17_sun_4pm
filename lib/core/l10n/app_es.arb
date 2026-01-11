@@ -1,0 +1,7 @@
+{
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "forgetPassword": "¿Olvidaste tu contraseña?",
+  "resetPassword": "Restablecer contraseña",
+  "do_not_have_account": "¿No tienes una cuenta? "
+}

@@ -1,5 +1,6 @@
 import 'package:event_app_c17_sun_4pm/core/app_theme/color_pallete.dart';
 import 'package:event_app_c17_sun_4pm/core/gen/assets.gen.dart';
+import 'package:event_app_c17_sun_4pm/core/l10n/app_localizations.dart';
 import 'package:event_app_c17_sun_4pm/core/widgets/custom_button_widget.dart';
 import 'package:event_app_c17_sun_4pm/core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -25,7 +27,7 @@ class _SignUpViewState extends State<SignUpView> {
         centerTitle: true,
         iconTheme: const IconThemeData(color: ColorPallete.primary),
         title: Text(
-          "Register",
+          appLocalization.register,
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
@@ -43,38 +45,41 @@ class _SignUpViewState extends State<SignUpView> {
             SizedBox(height: 24),
             CustomTextFormField(
               controller: emailController,
-              hintText: 'Name',
+              hintText: appLocalization.name,
               prefixIcon: Assets.icons.userIcn.svg(),
             ),
             SizedBox(height: 16),
             CustomTextFormField(
               controller: emailController,
-              hintText: 'Email',
+              hintText: appLocalization.email,
               prefixIcon: Assets.icons.mailIcn.svg(),
             ),
             SizedBox(height: 16),
             CustomTextFormField(
               controller: passwordController,
               isPassword: true,
-              hintText: 'Password',
+              hintText: appLocalization.password,
               prefixIcon: Assets.icons.passwordIcn.svg(),
             ),
             SizedBox(height: 16),
             CustomTextFormField(
               controller: passwordController,
               isPassword: true,
-              hintText: 'Re-Password',
+              hintText: appLocalization.password,
               prefixIcon: Assets.icons.passwordIcn.svg(),
             ),
             SizedBox(height: 24),
-            CustomButtonWidget(text: "Create Account", onPressed: () {}),
+            CustomButtonWidget(
+              text: appLocalization.create_account,
+              onPressed: () {},
+            ),
             SizedBox(height: 24),
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Already Have Account ? ",
+                    text: appLocalization.already_have_account,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -87,7 +92,7 @@ class _SignUpViewState extends State<SignUpView> {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Login",
+                        appLocalization.login,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

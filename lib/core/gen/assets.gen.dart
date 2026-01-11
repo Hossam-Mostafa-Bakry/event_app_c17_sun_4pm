@@ -17,6 +17,10 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/evently_logo.png
+  AssetGenImage get eventlyLogo =>
+      const AssetGenImage('assets/icons/evently_logo.png');
+
   /// File path: assets/icons/google_icn.svg
   SvgGenImage get googleIcn => const SvgGenImage('assets/icons/google_icn.svg');
 
@@ -34,7 +38,8 @@ class $AssetsIconsGen {
   SvgGenImage get userIcn => const SvgGenImage('assets/icons/user_icn.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
+    eventlyLogo,
     googleIcn,
     mailIcn,
     passwordIcn,
