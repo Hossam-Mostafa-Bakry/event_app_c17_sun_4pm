@@ -17,12 +17,34 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/active_heart_icn.svg
+  SvgGenImage get activeHeartIcn =>
+      const SvgGenImage('assets/icons/active_heart_icn.svg');
+
+  /// File path: assets/icons/active_home_icn.svg
+  SvgGenImage get activeHomeIcn =>
+      const SvgGenImage('assets/icons/active_home_icn.svg');
+
+  /// File path: assets/icons/active_user_icn.svg
+  SvgGenImage get activeUserIcn =>
+      const SvgGenImage('assets/icons/active_user_icn.svg');
+
   /// File path: assets/icons/evently_logo.png
   AssetGenImage get eventlyLogo =>
       const AssetGenImage('assets/icons/evently_logo.png');
 
+  /// File path: assets/icons/favorite_icn.svg
+  SvgGenImage get favoriteIcn =>
+      const SvgGenImage('assets/icons/favorite_icn.svg');
+
   /// File path: assets/icons/google_icn.svg
   SvgGenImage get googleIcn => const SvgGenImage('assets/icons/google_icn.svg');
+
+  /// File path: assets/icons/home_icn.svg
+  SvgGenImage get homeIcn => const SvgGenImage('assets/icons/home_icn.svg');
+
+  /// File path: assets/icons/lock.svg
+  SvgGenImage get lock => const SvgGenImage('assets/icons/lock.svg');
 
   /// File path: assets/icons/mail_icn.svg
   SvgGenImage get mailIcn => const SvgGenImage('assets/icons/mail_icn.svg');
@@ -31,25 +53,63 @@ class $AssetsIconsGen {
   SvgGenImage get passwordIcn =>
       const SvgGenImage('assets/icons/password_icn.svg');
 
+  /// File path: assets/icons/sms.svg
+  SvgGenImage get sms => const SvgGenImage('assets/icons/sms.svg');
+
+  /// File path: assets/icons/user.svg
+  SvgGenImage get userSvg => const SvgGenImage('assets/icons/user.svg');
+
   /// File path: assets/icons/user_.svg
-  SvgGenImage get user => const SvgGenImage('assets/icons/user_.svg');
+  SvgGenImage get userSvg_ => const SvgGenImage('assets/icons/user_.svg');
 
   /// File path: assets/icons/user_icn.svg
   SvgGenImage get userIcn => const SvgGenImage('assets/icons/user_icn.svg');
 
   /// List of all assets
   List<dynamic> get values => [
+    activeHeartIcn,
+    activeHomeIcn,
+    activeUserIcn,
     eventlyLogo,
+    favoriteIcn,
     googleIcn,
+    homeIcn,
+    lock,
     mailIcn,
     passwordIcn,
-    user,
+    sms,
+    userSvg,
+    userSvg_,
     userIcn,
   ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/birthday_dark_img.png
+  AssetGenImage get birthdayDarkImg =>
+      const AssetGenImage('assets/images/birthday_dark_img.png');
+
+  /// File path: assets/images/birthday_img.png
+  AssetGenImage get birthdayImg =>
+      const AssetGenImage('assets/images/birthday_img.png');
+
+  /// File path: assets/images/book_club_dark_img.png
+  AssetGenImage get bookClubDarkImg =>
+      const AssetGenImage('assets/images/book_club_dark_img.png');
+
+  /// File path: assets/images/book_club_img.png
+  AssetGenImage get bookClubImg =>
+      const AssetGenImage('assets/images/book_club_img.png');
+
+  /// File path: assets/images/exhibition_dark_img.png
+  AssetGenImage get exhibitionDarkImg =>
+      const AssetGenImage('assets/images/exhibition_dark_img.png');
+
+  /// File path: assets/images/exhibition_img.png
+  AssetGenImage get exhibitionImg =>
+      const AssetGenImage('assets/images/exhibition_img.png');
 
   /// File path: assets/images/forget_password_img.png
   AssetGenImage get forgetPasswordImg =>
@@ -59,8 +119,42 @@ class $AssetsImagesGen {
   AssetGenImage get logoIcn =>
       const AssetGenImage('assets/images/logo_icn.png');
 
+  /// File path: assets/images/meeting_dark_img.png
+  AssetGenImage get meetingDarkImg =>
+      const AssetGenImage('assets/images/meeting_dark_img.png');
+
+  /// File path: assets/images/meeting_img.png
+  AssetGenImage get meetingImg =>
+      const AssetGenImage('assets/images/meeting_img.png');
+
+  /// File path: assets/images/on_boearding_img.png
+  AssetGenImage get onBoeardingImg =>
+      const AssetGenImage('assets/images/on_boearding_img.png');
+
+  /// File path: assets/images/sport_dark_img.png
+  AssetGenImage get sportDarkImg =>
+      const AssetGenImage('assets/images/sport_dark_img.png');
+
+  /// File path: assets/images/sport_img.png
+  AssetGenImage get sportImg =>
+      const AssetGenImage('assets/images/sport_img.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [forgetPasswordImg, logoIcn];
+  List<AssetGenImage> get values => [
+    birthdayDarkImg,
+    birthdayImg,
+    bookClubDarkImg,
+    bookClubImg,
+    exhibitionDarkImg,
+    exhibitionImg,
+    forgetPasswordImg,
+    logoIcn,
+    meetingDarkImg,
+    meetingImg,
+    onBoeardingImg,
+    sportDarkImg,
+    sportImg,
+  ];
 }
 
 class Assets {

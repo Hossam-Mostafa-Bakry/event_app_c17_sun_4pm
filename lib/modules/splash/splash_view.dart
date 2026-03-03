@@ -14,16 +14,12 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, PagesRouteName.signIn);
+      Navigator.pushReplacementNamed(context, PagesRouteName.onBoarding);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Assets.icons.eventlyLogo.image(width: 185, height: 185),
-      ),
-    );
+    return Scaffold(body: Center(child: Assets.icons.eventlyLogo.image()));
   }
 }

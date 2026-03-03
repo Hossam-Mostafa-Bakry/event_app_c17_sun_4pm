@@ -7,7 +7,9 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final bool isPassword;
+  final int? maxLines;
   final String? Function(String?)? validator;
 
   const CustomTextFormField({
@@ -16,6 +18,8 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.controller,
     this.prefixIcon,
+    this.suffixIcon,
+    this.maxLines,
     this.isPassword = false,
   });
 
@@ -33,33 +37,40 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       obscureText: widget.isPassword ? obscureText : false,
       cursorColor: ColorPallete.borderColor,
       validator: widget.validator,
+      autovalidateMode: AutovalidateMode.always,
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
           color: ColorPallete.borderColor,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(width: 1, color: ColorPallete.borderColor),
+          borderSide: BorderSide(width: 1, color: ColorPallete.strokeMainColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(width: 1, color: ColorPallete.borderColor),
+          borderSide: BorderSide(width: 1, color: ColorPallete.strokeMainColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(width: 1, color: ColorPallete.borderColor),
+          borderSide: BorderSide(width: 1, color: ColorPallete.strokeMainColor),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(width: 1.5, color: ColorPallete.errorColor),
         ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: widget.prefixIcon,
-        ),
+        prefixIcon:
+            widget.prefixIcon != null
+                ? Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: widget.prefixIcon,
+                )
+                : null,
         suffixIcon:
             widget.isPassword
                 ? Bounceable(
@@ -75,7 +86,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     color: ColorPallete.borderColor,
                   ),
                 )
-                : null,
+                : widget.suffixIcon,
       ),
     );
   }

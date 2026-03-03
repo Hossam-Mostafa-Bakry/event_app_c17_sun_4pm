@@ -133,7 +133,7 @@ abstract class AppLocalizations {
   /// No description provided for @create_account.
   ///
   /// In en, this message translates to:
-  /// **'Create Account'**
+  /// **'Signup'**
   String get create_account;
 
   /// No description provided for @login_with_google.
@@ -171,6 +171,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already Have Account ? '**
   String get already_have_account;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
 }
 
 class _AppLocalizationsDelegate

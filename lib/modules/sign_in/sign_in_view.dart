@@ -23,30 +23,44 @@ class _SignInViewState extends State<SignInView> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final appLocalizations = AppLocalizations.of(context)!;
     AppSettingsProvider appSettingsProvider = Provider.of<AppSettingsProvider>(
       context,
     );
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Assets.icons.eventlyLogo.image(width: 142),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Assets.images.logoIcn.image(width: 185, height: 185),
+            SizedBox(height: 48),
+            Text(
+              "Login to your account",
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: ColorPallete.primary,
+              ),
+            ),
             SizedBox(height: 24),
             CustomTextFormField(
               controller: emailController,
               hintText: appLocalizations.email,
-              prefixIcon: Assets.icons.mailIcn.svg(),
+              prefixIcon: Assets.icons.sms.svg(),
             ),
             SizedBox(height: 16),
             CustomTextFormField(
               controller: passwordController,
               isPassword: true,
+              maxLines: 1,
               hintText: appLocalizations.password,
-              prefixIcon: Assets.icons.passwordIcn.svg(),
+              prefixIcon: Assets.icons.lock.svg(),
             ),
             SizedBox(height: 16),
             Bounceable(
@@ -65,19 +79,26 @@ class _SignInViewState extends State<SignInView> {
                 ),
               ),
             ),
-            SizedBox(height: 24),
-            CustomButtonWidget(text: appLocalizations.login, onPressed: () {}),
-            SizedBox(height: 24),
+            SizedBox(height: 48),
+            CustomButtonWidget(
+              text: appLocalizations.login,
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  PagesRouteName.layout,
+                  (route) => false,
+                );
+              },
+            ),
+            SizedBox(height: 48),
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: appLocalizations.do_not_have_account,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   WidgetSpan(
@@ -87,9 +108,8 @@ class _SignInViewState extends State<SignInView> {
                       },
                       child: Text(
                         appLocalizations.create_account,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
                           color: ColorPallete.primary,
                           decoration: TextDecoration.underline,
                           decorationColor: ColorPallete.primary,
@@ -100,7 +120,7 @@ class _SignInViewState extends State<SignInView> {
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 32),
             Row(
               children: [
                 Expanded(
@@ -131,7 +151,8 @@ class _SignInViewState extends State<SignInView> {
             SizedBox(height: 24),
             CustomButtonWidget(
               onPressed: () {},
-              backgroundColor: Colors.transparent,
+              borderColor: ColorPallete.strokeMainColor,
+              backgroundColor: Colors.white,
               customChild: Row(
                 spacing: 10,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -148,50 +169,6 @@ class _SignInViewState extends State<SignInView> {
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 16),
-            Row(
-              spacing: 20,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Bounceable(
-                  onTap: () {
-                    if (appSettingsProvider.currentLanguage == "ar") {
-                      appSettingsProvider.changeLanguage('en');
-                    } else {
-                      appSettingsProvider.changeLanguage('ar');
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: ColorPallete.primary,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      appSettingsProvider.currentLanguage == "en" ? "En" : "Ar",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                Bounceable(
-                  onTap: () {
-                    if (appSettingsProvider.currentTheme == ThemeMode.light) {
-                      appSettingsProvider.changeTheme(ThemeMode.dark);
-                    } else {
-                      appSettingsProvider.changeTheme(ThemeMode.light);
-                    }
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: ColorPallete.primary,
-                    child: Icon(Icons.sunny, size: 30, color: Colors.white),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

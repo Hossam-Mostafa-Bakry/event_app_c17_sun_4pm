@@ -24,7 +24,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get do_not_have_account => 'Don\'t Have Account ? ';
 
   @override
-  String get create_account => 'Create Account';
+  String get create_account => 'Signup';
 
   @override
   String get login_with_google => 'Login with Google';
@@ -43,4 +43,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get already_have_account => 'Already Have Account ? ';
+
+  @override
+  String get title => 'Title';
 }

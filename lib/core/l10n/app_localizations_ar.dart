@@ -43,4 +43,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get already_have_account => 'هل لديك حساب بالفعل؟';
+
+  @override
+  String get title => 'العنوان';
 }

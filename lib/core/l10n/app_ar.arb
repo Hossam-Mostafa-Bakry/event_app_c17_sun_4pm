@@ -10,5 +10,6 @@
   "login": "تسجيل الدخول",
   "register": "إنشاء حساب",
   "name": "الاسم",
-  "already_have_account": "هل لديك حساب بالفعل؟"
+  "already_have_account": "هل لديك حساب بالفعل؟",
+  "title": "العنوان"
 }

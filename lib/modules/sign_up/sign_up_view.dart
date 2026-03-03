@@ -14,99 +14,200 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final appLocalization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: ColorPallete.primary),
-        title: Text(
-          appLocalization.register,
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w400,
-            color: ColorPallete.primary,
-          ),
-        ),
+        leading: SizedBox.shrink(),
+        title: Assets.icons.eventlyLogo.image(width: 142),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Assets.images.logoIcn.image(width: 185, height: 185),
-            SizedBox(height: 24),
-            CustomTextFormField(
-              controller: emailController,
-              hintText: appLocalization.name,
-              prefixIcon: Assets.icons.userIcn.svg(),
-            ),
-            SizedBox(height: 16),
-            CustomTextFormField(
-              controller: emailController,
-              hintText: appLocalization.email,
-              prefixIcon: Assets.icons.mailIcn.svg(),
-            ),
-            SizedBox(height: 16),
-            CustomTextFormField(
-              controller: passwordController,
-              isPassword: true,
-              hintText: appLocalization.password,
-              prefixIcon: Assets.icons.passwordIcn.svg(),
-            ),
-            SizedBox(height: 16),
-            CustomTextFormField(
-              controller: passwordController,
-              isPassword: true,
-              hintText: appLocalization.password,
-              prefixIcon: Assets.icons.passwordIcn.svg(),
-            ),
-            SizedBox(height: 24),
-            CustomButtonWidget(
-              text: appLocalization.create_account,
-              onPressed: () {},
-            ),
-            SizedBox(height: 24),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: 47),
+              Text(
+                "Create your account",
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: ColorPallete.primary,
+                ),
+              ),
+              SizedBox(height: 24),
+              CustomTextFormField(
+                controller: _nameController,
+                hintText: appLocalization.name,
+                prefixIcon: Assets.icons.userSvg.svg(),
+                validator: (String? value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return "Name is required";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              CustomTextFormField(
+                controller: _emailController,
+                hintText: appLocalization.email,
+                prefixIcon: Assets.icons.sms.svg(),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  final emailRegex = RegExp(
+                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                  );
+                  if (!emailRegex.hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              CustomTextFormField(
+                controller: _passwordController,
+                isPassword: true,
+                hintText: appLocalization.password,
+                prefixIcon: Assets.icons.lock.svg(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a password';
+                  }
+                  final passwordRegex = RegExp(
+                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$%^&*(),.?":{}|<>]).{8,}$',
+                  );
+                  if (!passwordRegex.hasMatch(value)) {
+                    return 'Password must be at least 8 characters long and include:\n'
+                        '• At least one uppercase letter\n'
+                        '• At least one lowercase letter\n'
+                        '• At least one number\n'
+                        '• At least one special character';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              CustomTextFormField(
+                isPassword: true,
+                hintText: appLocalization.password,
+                prefixIcon: Assets.icons.lock.svg(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a Re-password';
+                  }
+
+                  if (value != _passwordController.text) {
+                    return 'Password does not match';
+                  }
+
+                  return null;
+                },
+              ),
+              SizedBox(height: 55),
+              CustomButtonWidget(
+                text: appLocalization.create_account,
+                onPressed: () {
+                  /// Validation
+                  if (_formKey.currentState!.validate()) {}
+                },
+              ),
+              SizedBox(height: 24),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: appLocalization.already_have_account,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                    WidgetSpan(
+                      child: Bounceable(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          appLocalization.login,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: ColorPallete.primary,
+                            decoration: TextDecoration.underline,
+                            decorationColor: ColorPallete.primary,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 32),
+              Row(
                 children: [
-                  TextSpan(
-                    text: appLocalization.already_have_account,
+                  Expanded(
+                    child: Divider(
+                      indent: 20,
+                      endIndent: 20,
+
+                      color: ColorPallete.primary,
+                    ),
+                  ),
+                  Text(
+                    appLocalization.or,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: Colors.black,
+                      color: ColorPallete.primary,
                     ),
                   ),
-                  WidgetSpan(
-                    child: Bounceable(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        appLocalization.login,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: ColorPallete.primary,
-                          decoration: TextDecoration.underline,
-                          decorationColor: ColorPallete.primary,
-                        ),
-                      ),
+                  Expanded(
+                    child: Divider(
+                      indent: 20,
+                      endIndent: 20,
+                      color: ColorPallete.primary,
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 24),
+              CustomButtonWidget(
+                onPressed: () {},
+                borderColor: ColorPallete.strokeMainColor,
+                backgroundColor: Colors.white,
+                customChild: Row(
+                  spacing: 10,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.icons.googleIcn.svg(),
+                    SizedBox(width: 16),
+                    Text(
+                      appLocalization.login_with_google,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: ColorPallete.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

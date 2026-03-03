@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final Color? backgroundColor;
+  final Color? borderColor;
   final void Function()? onPressed;
   final Widget? customChild;
   final String? text;
@@ -12,6 +13,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.text,
     this.customChild,
     this.backgroundColor,
+    this.borderColor,
     required this.onPressed,
   });
 
@@ -26,10 +28,13 @@ class CustomButtonWidget extends StatelessWidget {
               elevation: 0,
               shadowColor: Colors.transparent,
               backgroundColor: backgroundColor ?? ColorPallete.primary,
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 9),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
-                side: BorderSide(width: 1.5, color: ColorPallete.primary),
+                side: BorderSide(
+                  width: 1.5,
+                  color: borderColor ?? ColorPallete.primary,
+                ),
               ),
             ),
             child:
